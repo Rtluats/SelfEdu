@@ -36,7 +36,7 @@ func TestStack(t *testing.T) {
 			}
 			_, err := stack.Pop()
 			require.Error(t, err)
-			require.Equal(t, 0, len(stack.dataStore))
+			require.Equal(t, 0, len(stack))
 		})
 	}
 }
@@ -44,6 +44,6 @@ func TestStack(t *testing.T) {
 func TestStackPopWithZeroElement(t *testing.T) {
 	stack := NewStack()
 	_, err := stack.Pop()
-	require.Equal(t, 0, len(stack.dataStore))
+	require.Equal(t, 0, len(stack))
 	require.Error(t, err)
 }
