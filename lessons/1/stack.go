@@ -1,22 +1,24 @@
 package stack
 
+import "fmt"
+
 type Stack struct {
-	dataStore []any
+	dataStore []int
 }
 
 func NewStack() *Stack {
-	return &Stack{make([]any, 0)}
+	return &Stack{make([]int, 0)}
 }
 
-func (s *Stack) Push(data any) {
+func (s *Stack) Push(data int) {
 	s.dataStore = append(s.dataStore, data)
 }
 
-func (s *Stack) Pop() any {
+func (s *Stack) Pop() (int, error) {
 	if len(s.dataStore) == 0 {
-		return nil
+		return 0, fmt.Errorf("stack is empty")
 	}
 	val := s.dataStore[len(s.dataStore)-1]
 	s.dataStore = s.dataStore[:len(s.dataStore)-1]
-	return val
+	return val, nil
 }

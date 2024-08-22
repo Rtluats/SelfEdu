@@ -29,10 +29,13 @@ func TestStack(t *testing.T) {
 				stack.Push(v)
 			}
 
-			for _, v := range tc.expected {
-				require.Equal(t, v, stack.Pop())
+			for _, e := range tc.expected {
+				a, err := stack.Pop()
+				require.NoError(t, err)
+				require.Equal(t, e, a)
 			}
-
+			_, err := stack.Pop()
+			require.Error(t, err)
 			require.Equal(t, 0, len(stack.dataStore))
 		})
 	}
@@ -40,5 +43,7 @@ func TestStack(t *testing.T) {
 
 func TestStackPopWithZeroElement(t *testing.T) {
 	stack := NewStack()
-	require.Nil(t, stack.Pop())
+	_, err := stack.Pop()
+	require.Equal(t, 0, len(stack.dataStore))
+	require.Error(t, err)
 }
