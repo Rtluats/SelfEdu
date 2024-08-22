@@ -1,18 +1,18 @@
 package stack
 
 type Stack struct {
-	dataStore []interface{}
+	dataStore []any
 }
 
 func NewStack() *Stack {
-	return &Stack{make([]interface{}, 0)}
+	return &Stack{make([]any, 0)}
 }
 
-func (s *Stack) Push(data interface{}) {
+func (s *Stack) Push(data any) {
 	s.dataStore = append(s.dataStore, data)
 }
 
-func (s *Stack) Pop() interface{} {
+func (s *Stack) Pop() any {
 	if len(s.dataStore) == 0 {
 		return nil
 	}
